@@ -1,0 +1,27 @@
+type Documento {
+    id: ID!
+    nombrearchivo: String!
+    tipodocumento: String!
+    urlubicacion: String!
+    fechasubida: String!
+    ultimamodificacion : String!
+}
+
+input DocumentoInput {
+    nombrearchivo: String!
+    tipodocumento: String!
+    urlubicacion: String!
+    fechasubida: String!
+    ultimamodificacion : String!
+}
+
+type Query {
+    findAllDocumento: [Documento]!
+    findDocumentoById(id: ID!): Documento
+}
+
+type Mutation {
+    createDocumento(documentoInput: DocumentoInput!): Documento!
+    updateDocumento(id: ID!, documentoInput: DocumentoInput!): Documento!
+    deleteDocumento(id: ID!): Boolean!
+}

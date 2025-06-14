@@ -1,0 +1,87 @@
+type Documento {
+    id: ID!
+    nombrearchivo: String!
+    tipodocumento: String!
+    urlubicacion: String!
+    fechasubida: String!
+    ultimamodificacion : String!
+    tamanoarchivo: String!
+}
+
+input DocumentoInput {
+    nombrearchivo: String!
+    tipodocumento: String!
+    urlubicacion: String!
+    fechasubida: String!
+    ultimamodificacion : String!
+    tamanoarchivo: String!
+}
+
+type Proyecto {
+    id: ID!
+    nombreproyecto: String!
+    descripcion: String!
+    fechaInicio: String!
+    fechaFin: String!
+}
+
+input ProyectoInput {
+    nombreproyecto: String!
+    descripcion: String!
+    fechacreacion: String!
+}
+
+type Usuario {
+    id: ID!
+    nombreusuario: String!
+    rol: String!
+    correo: String!
+}
+
+input UsuarioInput {
+    nombreusuario: String!
+    rol: String!
+    correo: String!
+}
+
+type Entrega {
+    id: ID!
+    fechaentrega: String!
+    usuario: Usuario!
+    proyectoid: Proyecto!
+    documentoid: Documento!
+}
+
+input EntregaInput {
+    fechaentrega: String!
+    usuarioid: ID!
+    proyectoid: ID!
+    documentoid: ID!
+}
+
+
+
+type Query {
+    findAllDocumento: [Documento]!
+    findDocumentoById(id: ID!): Documento
+    findAllProyecto: [Proyecto]!
+    findProyectoById(id: ID!): Proyecto
+    findAllUsuario: [Usuario]!
+    findUsuarioById(id: ID!): Usuario
+    findAllEntrega: [Entrega]!
+    findEntregaById(id: ID!): Entrega
+}
+
+type Mutation {
+    createDocumento(documentoInput: DocumentoInput!): Documento!
+    updateDocumento(id: ID!, documentoInput: DocumentoInput!): Documento!
+    deleteDocumento(id: ID!): Boolean!
+    createProyecto(proyectoInput: ProyectoInput!): Proyecto!
+    updateProyecto(id: ID!, proyectoInput: ProyectoInput!): Proyecto!
+    deleteProyecto(id: ID!): Boolean!
+    createUsuario(usuarioInput: UsuarioInput!): Usuario!
+    updateUsuario(id: ID!, usuarioInput: UsuarioInput!): Usuario!
+    deleteUsuario(id: ID!): Boolean!
+    createEntrega(entregaInput: EntregaInput!): Entrega!
+    updateEntrega(id: ID!, entregaInput: EntregaInput!): Entrega!
+}

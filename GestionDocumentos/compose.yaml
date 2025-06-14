@@ -1,0 +1,29 @@
+### DOCKER COMPOSE
+version: "3.8"
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_documentos
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: main
+      POSTGRES_DB: DocumentosDB
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    image: gestion-documentos
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/DocumentosDB
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: main
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - postgres
+volumes:
+  pgdata:
