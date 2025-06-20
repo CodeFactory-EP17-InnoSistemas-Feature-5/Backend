@@ -26,6 +26,6 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           organization: alexramirez02
-          projectKey: alexramirez02_CodeFactory-EP17-InnoSistemas-Feature-5-Backend-  # ✅ Este es el projectKey exacto para backend
+          projectKey: alexramirez02_CodeFactory-EP17-InnoSistemas-Feature-5-Backend-
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
